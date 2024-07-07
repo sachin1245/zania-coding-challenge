@@ -52,14 +52,15 @@ This architecture allows for a clear separation of concerns, with data managemen
 Follow these steps to run the Zania Cat Card Dragger on your local machine:
 
 1. **Clone the repository:**
-   git clone [repository-url]
-   cd zania
 
-2. **Install dependencies:**
-   npm install
+   ```git clone https://github.com/sachin1245/zania-coding-challenge.git``` <br/>
+   ```cd zania```
 
-3. **Start the development server:**
-   npm start
+3. **Install dependencies:**
+   ```npm install```
 
-4. **Open the application:**
-   Open your web browser and navigate to `http://localhost:3000`.
+4. **Start the development server:**
+   ```npm start```
+
+5. **Open the application:**
+   ```Open your web browser and navigate to `http://localhost:3000`.```
