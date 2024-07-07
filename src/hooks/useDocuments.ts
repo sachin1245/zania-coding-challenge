@@ -30,7 +30,6 @@ export const useDocuments = () => {
     if (!hasChanges) return;
 
     setIsSaving(true);
-
     try {
       await saveDocuments(documents);
       setLastSaveTime(Date.now());
@@ -38,7 +37,9 @@ export const useDocuments = () => {
     } catch (error) {
       console.log('Failed to save documents', error);
     } finally {
-      setIsSaving(false);
+      setTimeout(() => {
+        setIsSaving(false);
+      }, 500); // adding setTimeout to see loading spinner
     }
   }, [documents, hasChanges]);
 

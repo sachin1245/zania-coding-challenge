@@ -1,46 +1,65 @@
-# Getting Started with Create React App
+# Drag and Drop Cards
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A playful drag-and-drop card interface featuring cat images.
 
-## Available Scripts
+## Thought Process
 
-In the project directory, you can run:
+In developing this application, I focused on creating a modular, efficient, and user-friendly interface. Here's a breakdown of my approach:
 
-### `npm start`
+### 1. Component Structure
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+I divided the application into three main components:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- `Card`: Represents individual document cards with cat images.
+- `CardGrid`: Manages the layout and drag-and-drop functionality of the cards.
+- `SaveStatus`: Displays the current saving status and time since last save.
 
-### `npm test`
+This modular approach enhances readability, maintainability, and reusability of the code.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 2. Custom Hook - useDocuments
 
-### `npm run build`
+I created a custom hook to centraliz state management logic:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Handles loading and saving of data.
+- Implements the required 5-second interval for automatic saving.
+- Manages `isLoading` and `isSaving` states to provide user feedback.
+- Utilizes localStorage for data persistence across page reloads.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+This hook encapsulates all data-related operations, keeping components focused on rendering and user interactions.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 3. Mock Service Worker (MSW)
 
-### `npm run eject`
+I used MSW to mock API calls, simulating server interactions without a backend. This approach allowed for easy testing and development of the frontend in isolation.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### 4. localStorage for Persistence
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+In conjunction with MSW, I used localStorage to persist data. This ensures that user changes are maintained across page reloads, enhancing the user experience.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### 5. Drag and Drop Implementation
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+I implemented the drag-and-drop functionality using the `react-dnd` and `react-dnd-html5-backend` packages. This solution provides a smooth and efficient way to reorder cards within the `CardGrid` component.
 
-## Learn More
+Additionally, I've included a backup implementation in `CardGrid.backup.tsx` which uses `react-beautiful-dnd`. This serves as an alternative approach.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 6. TypeScript Integration
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+As specified, I used TypeScript throughout the project to add static typing, improving code quality and developer experience.
+
+This architecture allows for a clear separation of concerns, with data management handled by the custom hook, UI rendering by the components, and API simulation by MSW.
+
+## How to Run the App
+
+Follow these steps to run the Zania Cat Card Dragger on your local machine:
+
+1. **Clone the repository:**
+   git clone [repository-url]
+   cd zania
+
+2. **Install dependencies:**
+   npm install
+
+3. **Start the development server:**
+   npm start
+
+4. **Open the application:**
+   Open your web browser and navigate to `http://localhost:3000`.
