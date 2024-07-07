@@ -4,14 +4,21 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+async function prepareWorker() {
+  if (process.env.NODE_ENV === 'development') {
+    const { worker } = await import('./mocks/browser');
+    return worker.start({
+      onUnhandledRequest: 'bypass', // This will prevent MSW from intercepting unhandled requests
+    });
+  }
+  return Promise.resolve();
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+
+prepareWorker().then(() => {
+  root.render(<App />);
+});
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
