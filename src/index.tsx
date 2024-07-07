@@ -5,13 +5,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 async function prepareWorker() {
-  if (process.env.NODE_ENV === 'development') {
-    const { worker } = await import('./mocks/browser');
-    return worker.start({
-      onUnhandledRequest: 'bypass', // This will prevent MSW from intercepting unhandled requests
-    });
-  }
-  return Promise.resolve();
+  const { worker } = await import('./mocks/browser');
+  return worker.start({
+    onUnhandledRequest: 'bypass', // This will prevent MSW from intercepting unhandled requests
+  });
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
